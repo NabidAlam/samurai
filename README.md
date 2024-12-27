@@ -81,7 +81,7 @@ python scripts/main_inference.py
 
 To run the demo with your custom video or frame directory, use the following examples:
 
-**Note:** The `.txt` file contains a single line with the bounding box of the first frame in `x,y,w,h` format.
+**Note:** The `.txt` file contains a single line with the bounding box of the first frame in `x,y,w,h` format while the SAM 2 takes `x1,y1,x2,y2` format as bbox input.
 
 ### Input is Video File
 
@@ -98,7 +98,7 @@ python scripts/demo.py --video_path <your_frame_directory> --txt_path <path_to_f
 ## FAQs
 **Question 1:** Does SAMURAI need training? [issue 34](https://github.com/yangchris11/samurai/issues/34)
 
-**Answer 1:** Unlike real-life samurai, the proposed samurai do not require additional training. It is a zero-shot method, we directly use the weights from SAM 2.1 to conduct VOT experiments. Kalman filter is used to estimate the current and future state (bounding box location and scale in our case) of a moving object based on measurements over time, it is a common approach that had been adapt in the field of tracking for a long time which does not requires any training. Please refer to code for more detail.
+**Answer 1:** Unlike real-life samurai, the proposed samurai do not require additional training. It is a zero-shot method, we directly use the weights from SAM 2.1 to conduct VOT experiments. The Kalman filter is used to estimate the current and future state (bounding box location and scale in our case) of a moving object based on measurements over time, it is a common approach that had been adopted in the field of tracking for a long time, which does not require any training. Please refer to code for more detail.
 
 **Question 2:** Does SAMURAI support streaming input (e.g. webcam)?
 
@@ -108,6 +108,9 @@ python scripts/demo.py --video_path <your_frame_directory> --txt_path <path_to_f
 
 **Answer 3:** See the discussion from sam2 https://github.com/facebookresearch/sam2/issues/264.
 
+**Question 4:** How do you run the evaluation on the VOT benchmarks?
+
+**Answer 4:** For LaSOT, LaSOT-ext, OTB, NFS please refer to the [issue 74](https://github.com/yangchris11/samurai/issues/74) for more details. For GOT-10k-test and TrackingNet, please refer to the official portal for submission.
 
 ## Acknowledgment
 
@@ -128,12 +131,12 @@ Please consider citing our paper and the wonderful `SAM 2` if you found our work
 }
 
 @misc{yang2024samurai,
-      title={SAMURAI: Adapting Segment Anything Model for Zero-Shot Visual Tracking with Motion-Aware Memory}, 
-      author={Cheng-Yen Yang and Hsiang-Wei Huang and Wenhao Chai and Zhongyu Jiang and Jenq-Neng Hwang},
-      year={2024},
-      eprint={2411.11922},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2411.11922}, 
+  title={SAMURAI: Adapting Segment Anything Model for Zero-Shot Visual Tracking with Motion-Aware Memory}, 
+  author={Cheng-Yen Yang and Hsiang-Wei Huang and Wenhao Chai and Zhongyu Jiang and Jenq-Neng Hwang},
+  year={2024},
+  eprint={2411.11922},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2411.11922}, 
 }
 ```
