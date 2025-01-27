@@ -583,6 +583,8 @@ class SAM2Base(torch.nn.Module):
             high_res_masks,
             obj_ptr,
             object_score_logits,
+            1,
+            1
         )
 
     def forward_image(self, img_batch: torch.Tensor):

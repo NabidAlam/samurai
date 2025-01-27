@@ -34,3 +34,17 @@ python ./tools/vos_inference.py \
 Then, we can use the evaluation tools or servers for each dataset to get the performance of the prediction PNG files above.
 
 Note: by default, the `vos_inference.py` script above assumes that all objects to track already appear on frame 0 in each video (as is the case in DAVIS, MOSE or SA-V). **For VOS datasets that don't have all objects to track appearing in the first frame (such as LVOS or YouTube-VOS), please add the `--track_object_appearing_later_in_video` flag when using `vos_inference.py`**.
+
+### SAMURAI VOS inference
+
+```bash
+python ./tools/vos_inference.py \
+  --sam2_cfg configs/samurai/sam2.1_hiera_l.yaml \
+  --sam2_checkpoint ./checkpoints/sam2.1_hiera_large.pt \
+  --base_video_dir /path-to-sav-val-or-sav-test/JPEGImages_24fps/ \
+  --input_mask_dir /path-to-sav-val-or-sav-test/Annotations_6fps \
+  --video_list_file /path-to-sav-val-or-sav-test/sav_val.txt \ # or sav_test.txt
+  --per_obj_png_file \
+  --output_mask_dir /path-to-save-results/ \
+  --track_object_appearing_later_in_video
+```
